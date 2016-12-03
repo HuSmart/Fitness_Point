@@ -1,28 +1,31 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <hello></hello>
+    <pageHeader fixed></pageHeader>  
+    <router-view></router-view>
+    <tabbar></tabbar>
   </div>
 </template>
 
 <script>
-import Hello from './components/Hello'
 
+import pageHeader from './components/PageHeader'
+import tabbar from './components/Tabbar'
+// import 
 export default {
   name: 'app',
   components: {
-    Hello
+    pageHeader,
+    tabbar,
+  },
+  data(){
+    return {
+    }
+  },
+  mounted(){
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  @import '~mint-ui/lib/style.css';
 </style>
