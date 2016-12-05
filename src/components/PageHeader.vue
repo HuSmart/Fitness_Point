@@ -1,9 +1,7 @@
 <template>
   <div id="head">
     <pageHeader fixed :title="title">
-      <router-link to="/" slot="left" v-if="back">
-        <mt-button icon="back">返回</mt-button>
-      </router-link>
+      <mt-button icon="back" @click="fullBack" slot="left" v-if="back">返回</mt-button>
       <mt-button icon="more" slot="right" v-if="more"></mt-button>
     </pageHeader>
   </div>
@@ -28,10 +26,17 @@ export default {
     more(){
       return this.$store.state.more
     }
+  },
+  methods:{
+    fullBack(){
+      window.history.go(-1)
+    }
   }
 }
 </script>
 
 <style>
-
+  #head{
+    height: 2rem
+  }
 </style>

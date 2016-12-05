@@ -1,13 +1,13 @@
 <template>
-  <items :active="active"></items>
+  <pages :active="active"></pages>
 </template>
 <script>
-  import items from '../components/Items.vue'
+  import pages from '../components/Pages.vue'
 
   export default {
     name: 'homeRouter',
     components: {
-      items
+      pages
     },
     data(){
       return {
