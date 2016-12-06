@@ -12,4 +12,20 @@ utils.isEmptyObject = function (obj) {
   return true;
 }
 
+/**
+ * 
+ * 
+ * @param {any} obj 动作的对象
+ * @returns 返回最近的一个item
+ */
+utils.getCurrentAction = function (obj) {
+  if (this.isEmptyObject(obj)) {
+    return []
+  } else {
+    let index = Object.keys(obj)
+    return obj[index[index.length - 1]]
+  }
+
+}
+
 export default utils

@@ -1,8 +1,8 @@
 <template>
   <div id="recording">
     <div class="headPart">
-      <field placeholder="输入使用的重量" v-model="weight"></field>
-      <field placeholder="输入进行的次数" v-model="count"></field>
+      <field type="number" placeholder="输入使用的重量" v-model="weight"></field>
+      <field type="number" placeholder="输入进行的次数" v-model="count"></field>
       <field placeholder="备注" v-model="remark"></field>
       <mt-button type="primary" size="large" @click="addCorde">添加记录</mt-button>
     </div>
@@ -11,14 +11,19 @@
       infinite-scroll-disabled="loading" 
       infinite-scroll-distance="10">
         <li v-for="(item, index) in list">
-          <mt-cell
-            :title="`#${index+1} ${ item.weight }${$store.state.unit} x ${ item.count }次数`"
-              is-link
-            value="带链接">
+          <mt-cell 
+            :title="`#${index+1} ${ item.weight }${$store.state.unit} x ${ item.count }次数`" 
+            is-link 
+            @click.native="showDetail(item,index)"
+            value="编辑"
+          >
           </mt-cell>
         </li>
       </ul>
     </div>
+    <!--Edit-->
+    <edit-wrapper :params="params"></edit-wrapper>
+    <div class="v-modal bacg" style="z-index:2000;" :class="{bbb:this.$store.state.show}" @click="exit"></div>
   </div>
 </template>
 <script>
@@ -29,6 +34,10 @@
   import { MessageBox } from 'mint-ui';
   import { InfiniteScroll } from 'mint-ui';
   import { Cell } from 'mint-ui';
+  
+  
+  import EditRecorde from '../components/editRecorde.vue'
+
 
   import  Utils  from '../lib/utils.js'
 
@@ -39,7 +48,8 @@
     components:{
       Field,
       'mt-button': Button,
-      'mt-cell': Cell
+      'mt-cell': Cell,
+      'edit-wrapper': EditRecorde
     },
     mothed(){
       
@@ -49,52 +59,61 @@
         weight: '',
         count: '',
         remark: '',
-        loading: false
+        loading: false,
+        isinit:true,
+        params: {
+          item:{
+            'weight':'',
+            'count': ''
+          }
+        }
       }
     },
     computed: {
       list(){
-        let data = this.$store.state.recordeList[Utils.getDate()]
-        if(data){
-          return data[this.$store.state.title] || []
-        }else{
-          return []
+        let arr = Utils.getCurrentAction(this.$store.state.recordeList[this.$store.state.title] || {})
+        if (arr.length != 0){
+          this.isinit = false
         }
+        return arr
       }
     },
     methods: {
       addCorde(){
-        let action = this.$store.state.title
-        // 如果当天没有该动作的记录就初始化
-        this.$store.state.recordeList[Utils.getDate()] = 
-          this.$store.state.recordeList[Utils.getDate()] || {}
-
-        this.$store.state.recordeList[Utils.getDate()][action] = 
-          this.$store.state.recordeList[Utils.getDate()][action] || []
         if (!this.weight || !this.count){
           MessageBox('提示','重量和次数不能为空')
           return 
+        }
+        if(this.list.length ==0 ){
+
         }
         let item = {
           'weight': this.weight,
           'count': this.count,
           'remark': this.remark
         }
-        this.$store.state.recordeList[Utils.getDate()][action].push(item)
-        this.list.push(item)
+        this.$store.dispatch('addActionRecording', item)
+        if(this.isinit) this.list.push(item) 
+        // 
         this.weight = ''
         this.count = ''
         // ....处理..
       },
       loadMore() {
         this.loading = true;
-        // setTimeout(() => {
-        //   let last = this.list[this.list.length - 1];
-        //   for (let i = 1; i <= 10; i++) {
-        //     this.list.push(last + i);
-        //   }
-        //   this.loading = false;
-        // }, 2500);
+
+      },
+      showDetail(item, index){
+        // MessageBox('提示', '操作成功');
+        this.params = {
+          'item': item,
+          'index': index
+        }
+        this.$store.state.show = true
+
+      },
+      exit(){
+        this.$store.state.show = false
       }
     }
   }
@@ -127,4 +146,11 @@
   ::-webkit-scrollbar {
     display: none
   }
+  .bacg{
+    display: none
+  }
+  .bbb{
+    display: block
+  }
+  
 </style>
