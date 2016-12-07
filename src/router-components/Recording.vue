@@ -60,7 +60,6 @@
         count: '',
         remark: '',
         loading: false,
-        isinit:true,
         params: {
           item:{
             'weight':'',
@@ -71,11 +70,10 @@
     },
     computed: {
       list(){
-        let arr = Utils.getCurrentAction(this.$store.state.recordeList[this.$store.state.title] || {})
-        if (arr.length != 0){
-          this.isinit = false
-        }
-        return arr
+        let action = this.$store.state.title
+        let nowDayTime = Utils.getDate()
+        this.$store.dispatch('initActionRecording')
+        return this.$store.state.recordeList[action][nowDayTime]
       }
     },
     methods: {
@@ -93,18 +91,14 @@
           'remark': this.remark
         }
         this.$store.dispatch('addActionRecording', item)
-        if(this.isinit) this.list.push(item) 
-        // 
         this.weight = ''
         this.count = ''
-        // ....处理..
       },
       loadMore() {
         this.loading = true;
 
       },
       showDetail(item, index){
-        // MessageBox('提示', '操作成功');
         this.params = {
           'item': item,
           'index': index
@@ -125,7 +119,6 @@
   
   li {
     list-style-type: none;
-    /*margin-bottom: 1rem;*/
   }
   
   .headPart {

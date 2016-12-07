@@ -4,10 +4,16 @@ export default {
   addActionRecording({ commit }, item){
     commit(types.ADD_ACTION_RECORDING, item)
   },
-  initActionRecording({ commit }){
-    commit(types.INIT_ACTION_RECORDING)
+  initAllRecording({ commit }){
+    commit(types.INIT_ALL_RECORDING)
   },
   editActionRecording({ commit }, params){
     commit(types.EDIT_ACTION_RECORDING, params)
+  },
+  delActionRecording( {commit }, index){
+    commit(types.DEL_ACTION_RECORDING, index)
+  },
+  initActionRecording({ commit }, params){
+    commit(types.INIT_ACTION_RECORDING, params)
   }
 }

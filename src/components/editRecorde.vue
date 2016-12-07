@@ -7,13 +7,15 @@
         <mt-field type="number" :label="`次数(${this.$store.state.unit})`" placeholder="请输入进行的次数" v-model="params.item.count"></mt-field>
       </div>
       <mt-button class="edit-btn" type="primary" size="large" @click="save">保存修改</mt-button>
-      <mt-button class="edit-btn" type="danger" size="large" @click="save">删除记录</mt-button>
+      <mt-button class="edit-btn" type="danger" size="large" @click="deleteRec">删除记录</mt-button>
     </div>
   </transition>
 </template>
 <script>
   import { Field } from 'mint-ui';
   import { Button } from 'mint-ui';
+  import { Toast } from 'mint-ui';
+  import { MessageBox } from 'mint-ui';
 
   export default {
     props: ['params'],
@@ -28,7 +30,19 @@
     methods: {
       save(){
         this.$store.dispatch('editActionRecording', this.params)
-        this.$store.state.show = false
+          .then(() => {
+            Toast('修改成功');
+            this.$store.state.show = false
+          })
+          .cache(msg => Toast(msg))
+      },
+      deleteRec(){
+        MessageBox.confirm('确定执行此操作?')
+          .then(action => this.$store.dispatch('delActionRecording', this.params.index))
+          .then(() => {
+            Toast('删除成功');
+            this.$store.state.show = false
+          })
       }
     }
   }
