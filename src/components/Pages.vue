@@ -1,8 +1,10 @@
 <template>
   <div id="pages" class="page">
     <mt-tab-container v-model="active" swipeable>
-      <mt-tab-container-item id="开始">
-        <router-view></router-view>
+      <mt-tab-container-item id="开始" >
+        <transition name="start-wapper" mode="out-in">
+          <router-view></router-view>
+        </transition>
       </mt-tab-container-item>
       <mt-tab-container-item id="健身计划">
         <mt-cell v-for="n in 5" title="tab-container 2">321</mt-cell>
@@ -29,7 +31,17 @@ export default {
 </script>
 
 <style>
-  #pages{
+  #pages {
     /*padding: 2rem 0;*/
+  }
+
+  .start-wapper-enter-active,
+  .start-wapper-leave-active {
+    transition: opacity .3s
+  }
+  
+  .start-wapper-enter,
+  .start-wapper-leave-active {
+    opacity: 0
   }
 </style>

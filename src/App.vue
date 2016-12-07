@@ -1,9 +1,7 @@
 <template>
   <div id="app">
     <pageHeader></pageHeader>
-    <transition name="fade" mode="out-in">
       <router-view></router-view>
-    </transition>
     <tabbar></tabbar>
   </div>
 </template>
@@ -24,6 +22,7 @@ export default {
     }
   },
   mounted(){
+    this.$store.dispatch('initAllRecording')
   },
   watch: {
     '$route' (to, from) {
@@ -38,14 +37,4 @@ export default {
 
 <style>
   @import '~mint-ui/lib/style.css';
-  .fade-enter-active,
-  .fade-leave-active {
-    transition: all .25s;
-    transform: translateX(0%);
-  }
-  
-  .fade-enter,
-  .fade-leave-active {
-    transform: translateX(-100%);
-  }
 </style>
