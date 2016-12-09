@@ -6,12 +6,20 @@
       <textarea cols="30" rows="10" readonly>desc</textarea>
     </div>
     <mt-button type="primary" size="large" @click="buttonClick">开始这个训练</mt-button>
-    <mt-button type="default" size="large">编辑</mt-button>
+    <mt-button type="default" size="large" @click="editClick">编辑</mt-button>
     <mt-button type="danger" size="large">删除</mt-button>
+    <edit-action></edit-action>
+    <edit-mask></edit-mask>
+    <muscle-picker></muscle-picke
   </div>
 </template>
 <script>
   import { Button } from 'mint-ui';
+
+  import editAction from '../components/editAction.vue'
+  import Mask from '../components/Mask.vue'
+  import MusclePicker from '../components/MusclePicker.vue'
+
   export default {
     computed: {
     },
@@ -23,7 +31,10 @@
       
     },
     components:{
-      'mt-button': Button
+      'mt-button': Button,
+      editAction,
+      'edit-mask': Mask,
+      MusclePicker
     },
     mounted(){
       this.$nextTick(function(){
@@ -36,6 +47,9 @@
       buttonClick(){
         this.$store.state.title = this.action
         this.$router.push(`../recorde/${this.action}`)
+      },
+      editClick(){
+        this.$store.state.show = true
       }
     }
   }

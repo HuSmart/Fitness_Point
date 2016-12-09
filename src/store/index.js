@@ -12,6 +12,7 @@ let state ={
   more: true,
   unit: 'Kg',
   show: false,
+  muscleSelecter: false,
   // 动作列表
   actionList:{"胸部":[{"name":"Beatrice Joyce"},{"name":"Steele Merritt"},{"name":"Vanessa Frost"},{"name":"Suzette Ray"}],"背部":[{"name":"Frank Cantu"},{"name":"Moody Dixon"},{"name":"Jocelyn Wilkerson"},{"name":"Jones Hicks"}],"腿部":[{"name":"Beatriz Thomas"},{"name":"Mcintyre Bennett"},{"name":"Tia Glass"},{"name":"Shannon Howe"}],"肩部":[{"name":"Tracy Rowland"},{"name":"Davidson Steele"},{"name":"Bennett Nicholson"},{"name":"Spence Kidd"}],"手臂":[{"name":"Quinn Gibson"},{"name":"Lindsey Rojas"},{"name":"Evelyn Carroll"},{"name":"Adrian Zimmerman"}],"腹部":[{"name":"Angelica Thompson"},{"name":"Britt Riggs"},{"name":"Tasha Horn"},{"name":"Helen Chambers"}],"有氧":[{"name":"Minnie Crawford"},{"name":"Aimee Gonzalez"},{"name":"Melanie Shields"},{"name":"Reyna Leblanc"}],"拉伸":[{"name":"Townsend Gardner"},{"name":"Edwina Waller"},{"name":"Morin Silva"},{"name":"Isabel Puckett"}]},
   // 肌群列表

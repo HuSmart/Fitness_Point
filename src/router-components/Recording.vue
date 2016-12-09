@@ -23,7 +23,7 @@
     </div>
     <!--Edit-->
     <edit-wrapper :params="params"></edit-wrapper>
-    <div class="v-modal bacg" style="z-index:2000;" :class="{bbb:this.$store.state.show}" @click="exit"></div>
+    <edit-mask></edit-mask>
   </div>
 </template>
 <script>
@@ -37,6 +37,7 @@
   
   
   import EditRecorde from '../components/editRecorde.vue'
+  import Mask from '../components/Mask.vue'
 
 
   import  Utils  from '../lib/utils.js'
@@ -49,7 +50,8 @@
       Field,
       'mt-button': Button,
       'mt-cell': Cell,
-      'edit-wrapper': EditRecorde
+      'edit-wrapper': EditRecorde,
+      'edit-mask':Mask
     },
     mothed(){
       
@@ -104,11 +106,7 @@
           'index': index
         }
         this.$store.state.show = true
-
       },
-      exit(){
-        this.$store.state.show = false
-      }
     }
   }
 </script>
@@ -139,11 +137,6 @@
   ::-webkit-scrollbar {
     display: none
   }
-  .bacg{
-    display: none
-  }
-  .bbb{
-    display: block
-  }
+  
   
 </style>

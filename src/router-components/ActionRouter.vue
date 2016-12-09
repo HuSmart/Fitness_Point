@@ -1,10 +1,9 @@
 <template>
-  <div id="selectAction">
-    <mt-cell v-for="action in actionList" :title="action.name" 
-      :to="`detail/${action.name}`" is-link>
-      <img slot="icon" src="" width="24" height="24">
-    </mt-cell>
-  </div>
+    <div id="selectAction">
+      <mt-cell v-for="action in actionList" :title="action.name" :to="`detail/${action.name}`" is-link>
+        <img slot="icon" src="" width="24" height="24">
+      </mt-cell>
+    </div>
 </template>
 <script>
   import { Cell } from 'mint-ui';
@@ -30,4 +29,5 @@
     }
   }
 </script>
-<style></style>
+<style>
+</style>
