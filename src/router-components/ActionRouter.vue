@@ -18,6 +18,8 @@
       this.actionList = this.$store.state.actionList[this.$route.params.muscle]
       this.$store.state.back = true
       this.$store.state.title = this.$route.params.muscle
+      // 存储 所选择的肌群
+      this.$store.state.selectedParams.muscle = this.$route.params.muscle
     },
     computed:{
       muscle(){

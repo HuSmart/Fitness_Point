@@ -8,9 +8,6 @@
     <mt-button type="primary" size="large" @click="buttonClick">开始这个训练</mt-button>
     <mt-button type="default" size="large" @click="editClick">编辑</mt-button>
     <mt-button type="danger" size="large">删除</mt-button>
-    <edit-action></edit-action>
-    <edit-mask></edit-mask>
-    <muscle-picker></muscle-picke
   </div>
 </template>
 <script>
@@ -39,7 +36,9 @@
     mounted(){
       this.$nextTick(function(){
         this.action = this.$route.params.action
-        this.muscle = this.$store.state.title 
+        this.muscle = this.$store.state.selectedParams.muscle
+        // 保存所选择的动作
+        this.$store.state.selectedParams.action = this.action
         this.$store.state.title = '训练介绍'
       })
     },
@@ -49,7 +48,8 @@
         this.$router.push(`../recorde/${this.action}`)
       },
       editClick(){
-        this.$store.state.show = true
+        // this.$store.state.show = true
+        this.$router.push(`../edit/${this.action}`)
       }
     }
   }
