@@ -10,6 +10,7 @@ import ActionRouter from './router-components/ActionRouter.vue'
 import StartPage from './components/StartPage'
 import ActionDetail from './router-components/ActionDetail.vue'
 import Recording from './router-components/Recording.vue'
+import AddtAction from './components/AddAction.vue'
 Vue.use(VueRouter)
 Vue.use(MinUI)
 
@@ -34,6 +35,9 @@ const router = new VueRouter({
         },{
           path: 'recorde/:action',
           component: Recording
+        },{
+          path: 'edit/:action',
+          component: AddtAction
         }
       ]
     }
