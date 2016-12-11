@@ -1,0 +1,38 @@
+// 假设记录的形式是这样的
+{
+  "2016-12-05": {
+    "actionName": [
+      {
+        "weight": 25,
+        "count": 10
+      },
+      {
+        "weight": 23,
+        "count": 10
+      },
+      {
+        "weight": 20,
+        "count": 10
+      }
+    ]
+  }
+}
+// 假设记录的形式是这样的
+{
+  "actionName": {
+    "time": [
+      {
+        "weight": 25,
+        "count": 10
+      },
+      {
+        "weight": 23,
+        "count": 10
+      },
+      {
+        "weight": 20,
+        "count": 10
+      }
+    ]
+  }
+}
