@@ -32,5 +32,5 @@ export default {
   // 初始化所有动作
   [types.INIT_ALL_RECORDING](state){
     state.recordeList = Utils.syncRecToApp()
-  }
+  },
 }

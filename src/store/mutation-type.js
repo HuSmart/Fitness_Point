@@ -11,3 +11,4 @@ export const INIT_ACTION_RECORDING = "INIT_ACTION_RECORDING"
 // 初始化所有的健身记录
 export const INIT_ALL_RECORDING = "INIT_ALL_RECORDING"
 
+
