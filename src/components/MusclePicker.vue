@@ -43,9 +43,10 @@
     width: 95vw;
     bottom: 0;
     z-index: 2003;
+    background: darkslateblue;
   }
 
   .selecter{
-    height: 15vh
+    /*height: 15vh*/
   }
 </style>
