@@ -1,9 +1,9 @@
 <template>
   <div id="detail">
-    <mt-button disabled size="large">{{action}}</mt-button>
-    <mt-button disabled size="large">{{muscle}}</mt-button>
+    <mt-button disabled size="large">{{this.params.name}}</mt-button>
+    <mt-button disabled size="large">{{this.params.muscle}}</mt-button>
     <div class="desc">
-      <textarea cols="30" rows="10" readonly>desc</textarea>
+      <textarea cols="30" rows="10" readonly>{{this.params.desc}}</textarea>
     </div>
     <mt-button type="primary" size="large" @click="buttonClick">开始这个训练</mt-button>
     <mt-button type="default" size="large" @click="editClick">编辑</mt-button>
@@ -23,7 +23,8 @@
     data(){
       return {
         action: '',
-        muscle: ''
+        muscle: '',
+        params: ''
       }
       
     },
@@ -35,10 +36,10 @@
     },
     mounted(){
       this.$nextTick(function(){
-        this.action = this.$route.params.action
-        this.muscle = this.$store.state.selectedParams.muscle
-        // 保存所选择的动作
-        this.$store.state.selectedParams.action = this.action
+        this.$store.state.selectedParams.muscle = this.$store.state.muscle
+        this.$store.state.selectedParams.action = this.$route.params.action
+        this.params = this.$store.getters.getActionDescript[0]
+        this.params.muscle = this.$store.state.muscle
         this.$store.state.title = '训练介绍'
       })
     },
@@ -48,8 +49,9 @@
         this.$router.push(`../recorde/${this.action}`)
       },
       editClick(){
-        // this.$store.state.show = true
-        this.$router.push(`../edit/${this.action}`)
+        this.$store.state.selectedParams.muscle = this.params.muscle
+        this.$store.state.selectedParams.action = this.params.action
+        this.$router.push(`../edit/${this.params.action}`)
       }
     }
   }

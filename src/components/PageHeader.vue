@@ -10,6 +10,7 @@
 <script>
 import { Header } from 'mint-ui'
 import { Button } from 'mint-ui';
+import utils from '../lib/utils.js'
 
 export default {
   components:{
@@ -29,6 +30,9 @@ export default {
   },
   methods:{
     fullBack(){
+      if(!utils.isEmptyObject(this.$store.state.selectedParams)){
+        this.$store.state.selectedParams = {}
+      }
       window.history.go(-1)
     }
   }
