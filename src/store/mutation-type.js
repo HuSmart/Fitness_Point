@@ -10,5 +10,9 @@ export const EDIT_ACTION_RECORDING = "EDIT_ACTION_RECORDING"
 export const INIT_ACTION_RECORDING = "INIT_ACTION_RECORDING"
 // 初始化所有的健身记录
 export const INIT_ALL_RECORDING = "INIT_ALL_RECORDING"
+// 修改动作的详细信息
+export const SET_ACTION_DETAIL = "SET_ACTION_DETAIL"
+// 初始化所有的训练动作
+export const INIT_ALL_ACTION = "INIT_ALL_ACTION"
 
 

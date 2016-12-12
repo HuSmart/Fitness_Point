@@ -15,5 +15,11 @@ export default {
   },
   initActionRecording({ commit }, params){
     commit(types.INIT_ACTION_RECORDING, params)
+  },
+  setActionDetail({ commit }, params){
+    commit(types.SET_ACTION_DETAIL, params)
+  },
+  initAllAction({commit}){
+    commit(types.INIT_ALL_ACTION)
   }
 }

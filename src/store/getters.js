@@ -1,13 +1,15 @@
 export default {
   getSelectedParams(state){
-    return state.state.selectedParams
+    return state.selectedParams
   },
   getActionDescript(state){
-    let muscle = state.selectedParams.muscle
+    // debugger
     let selectedAction = state.selectedParams.action
-    return state.actionList[muscle].filter(action => {
+    let result  = state.actionList[state.selectedParams.muscle].filter(action => {
       return action.name === selectedAction
     })
+    state.selectedParams.desc = result.desc
+    return result
   }
 }
 
