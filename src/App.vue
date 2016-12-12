@@ -23,6 +23,8 @@ export default {
   },
   mounted(){
     this.$store.dispatch('initAllRecording')
+    this.$store.dispatch('initAllAction')
+
   },
   watch: {
     '$route' (to, from) {
