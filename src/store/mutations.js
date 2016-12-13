@@ -66,5 +66,16 @@ export default {
   },
   [types.INIT_ALL_ACTION](state) {
     state.actionList = Utils.syncRecToApp('act')
+  },
+  [types.DEL_MUSCLES_ACTION](state, params){
+    const tempData = state.actionList[params.muscle]
+    let index = 0
+    for (const data of tempData){
+      if (data.name === params.name) {
+        state.actionList[params.muscle].splice(index, 1)
+      }
+      index++
+    }
+    console.log(state.actionList[params.muscle])
   }
 }
