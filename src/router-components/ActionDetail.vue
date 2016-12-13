@@ -45,13 +45,13 @@
     },
     methods:{
       buttonClick(){
-        this.$store.state.title = this.action
-        this.$router.push(`../recorde/${this.action}`)
+        this.$store.state.title = this.params.name
+        this.$router.push(`../recorde/${this.params.name}`)
       },
       editClick(){
         this.$store.state.selectedParams.muscle = this.params.muscle
         this.$store.state.selectedParams.action = this.params.action
-        this.$router.push(`../edit/${this.params.action}`)
+        this.$router.push(`../edit/${this.params.name}`)
       }
     }
   }

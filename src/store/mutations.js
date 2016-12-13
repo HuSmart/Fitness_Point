@@ -33,6 +33,7 @@ export default {
   [types.INIT_ALL_RECORDING](state) {
     state.recordeList = Utils.syncRecToApp('rec')
   },
+  //编辑动作的基本信息
   [types.SET_ACTION_DETAIL](state, params) {
     // 原始数据
     let oldParams = state.selectedParams
@@ -43,16 +44,25 @@ export default {
       state.recordeList[params.name] = tempData
       Utils.syncRecToLocal('rec', state.recordeList)
     }
+    // 更改所属肌群后进行处理
     if (oldParams.muscle !== params.muscle) {
-      console.log('muscle_change')
-      let tempData = state.actionList[oldParams.muscle]
-      for(let i = 0,len = tempData.length; i < len; i++){
-        console.log(tempData[i].name )
+      // debugger
+      const tempData = state.actionList[oldParams.muscle]
+      let index = 0
+      for (const data of tempData){
+        // 判定当前修改的动作
+        if (data.name === params.name){
+          state.actionList[params.muscle].splice(-1,0,data)
+          state.actionList[oldParams.muscle].splice(index, 1)
+          state.muscle = params.muscle
+        }
+        index++
       }
     }
     // 和Localstorage同步
     Utils.syncRecToLocal('act', state.actionList)
-    
+    // state.selectedParams.action = params.name
+    // state.selectedParams.muscle = params.muscle
   },
   [types.INIT_ALL_ACTION](state) {
     state.actionList = Utils.syncRecToApp('act')
