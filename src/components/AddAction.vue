@@ -19,6 +19,7 @@
   import {MessageBox} from 'mint-ui';
   import { Popup } from 'mint-ui'
   import { Picker } from 'mint-ui'
+  import { Toast } from 'mint-ui'
 
   import Mask from '../components/Mask.vue'
 
@@ -66,10 +67,14 @@
       },
       saveEdit(){
         this.$store.dispatch('setActionDetail', this.params)
+          .then(() => {
+            Toast('修改成功')
+            this.$router.replace(`../detail/${this.params.name}`)
+          })
+          .catch(msg => Toast(msg))
       },
       editClick(){
         this.$router.go(-1)
-        // this.$store.state.show = true
       },
       onValuesChange(picker, values) {
         if (values[0] > values[1]) {
