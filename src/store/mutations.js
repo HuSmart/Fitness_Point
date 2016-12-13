@@ -41,7 +41,7 @@ export default {
     if (!Utils.isEmptyObject(state.recordeList[oldParams.action])) {
       let tempData = state.recordeList[oldParams.action]
       delete state.recordeList[oldParams.action]//删除老名称字段
-      state.recordeList[params.name] = tempData
+      state.recordeList[params.name] = tempData //增加新的字段
       Utils.syncRecToLocal('rec', state.recordeList)
     }
     // 更改所属肌群后进行处理
@@ -61,12 +61,11 @@ export default {
     }
     // 和Localstorage同步
     Utils.syncRecToLocal('act', state.actionList)
-    // state.selectedParams.action = params.name
-    // state.selectedParams.muscle = params.muscle
   },
   [types.INIT_ALL_ACTION](state) {
     state.actionList = Utils.syncRecToApp('act')
   },
+  // 删除action
   [types.DEL_MUSCLES_ACTION](state, params){
     const tempData = state.actionList[params.muscle]
     let index = 0
@@ -76,6 +75,10 @@ export default {
       }
       index++
     }
-    console.log(state.actionList[params.muscle])
+    if(params.key){
+      delete state.recordeList[params.name]
+    }
+    Utils.syncRecToLocal('act', state.actionList)
+    Utils.syncRecToLocal('rec', state.recordeList)
   }
 }

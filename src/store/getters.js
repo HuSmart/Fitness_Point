@@ -10,6 +10,9 @@ export default {
     })
     state.selectedParams.desc = result.desc
     return result
+  },
+  searchActionInRecorde(state){
+    return state.recordeList[state.selectedParams.action] ? true : false
   }
 }
 
