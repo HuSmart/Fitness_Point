@@ -52,6 +52,8 @@ export default {
       for (const data of tempData){
         // 判定当前修改的动作
         if (data.name === params.name){
+          // 删除多余的muscle属性
+          delete data['muscle']
           state.actionList[params.muscle].splice(-1,0,data)
           state.actionList[oldParams.muscle].splice(index, 1)
           state.muscle = params.muscle
@@ -80,5 +82,12 @@ export default {
     }
     Utils.syncRecToLocal('act', state.actionList)
     Utils.syncRecToLocal('rec', state.recordeList)
+  },
+  // 添加新的训练动作
+  [types.ADD_MUSCLES_ACTION](state, params){
+    const muscle = params.muscle
+    delete params['muscle']
+    state.actionList[muscle].push(params)
+    Utils.syncRecToLocal('act', state.actionList)
   }
 }

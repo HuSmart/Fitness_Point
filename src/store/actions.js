@@ -24,5 +24,8 @@ export default {
   },
   delMuscleAction({commit}, params){
     commit(types.DEL_MUSCLES_ACTION, params)
+  },
+  addMuscleAction({commit}, params){
+    commit(types.ADD_MUSCLES_ACTION, params)
   }
 }
