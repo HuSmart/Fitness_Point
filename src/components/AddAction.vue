@@ -5,7 +5,6 @@
     <mt-button size="large" @click="selectMuscle">{{this.params.muscle}}</mt-button>
     <div class="desc">
       <textarea cols="30" rows="10" v-model="params.desc"></textarea>
-      <input type="a">
     </div>
     <mt-button type="primary" size="large" @click="saveEdit">保存</mt-button>
     <mt-button type="default" size="large" @click="editClick">取消</mt-button>
@@ -48,9 +47,15 @@
     },
     mounted(){
       this.$nextTick(function(){
-        this.$store.state.title = '编辑训练动作'
-        this.params = this.$store.getters.getActionDescript[0]
-        this.params.muscle = this.$store.state.selectedParams.muscle
+        if(this.$route.params.action === 'New'){
+          this.$store.state.title = '新的训练动作'
+          this.$store.state.back = true
+          this.params = {'name':'请输入动作名称','muscle':'选择所属肌群','desc':'输入动作的描述信息'}
+        }else{
+          this.$store.state.title = '编辑训练动作'
+          this.params = this.$store.getters.getActionDescript[0]
+          this.params.muscle = this.$store.state.selectedParams.muscle
+        }
       })
     },
     methods:{
@@ -66,12 +71,16 @@
         this.popupVisible = true
       },
       saveEdit(){
-        this.$store.dispatch('setActionDetail', this.params)
-          .then(() => {
-            Toast('修改成功')
-            this.$router.replace(`../detail/${this.params.name}`)
-          })
-          .catch(msg => Toast(msg))
+        if(this.$route.params.action === 'New'){
+          this.$store.dispatch('addMuscleAction', this.params)
+        }else{
+          this.$store.dispatch('setActionDetail', this.params)
+            .then(() => {
+              Toast('修改成功')
+              this.$router.replace(`../detail/${this.params.name}`)
+            })
+            .catch(msg => Toast(msg))
+        }
       },
       editClick(){
         this.$router.go(-1)

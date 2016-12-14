@@ -1,7 +1,7 @@
 <template>
     <div id="menu-wapper">
         <ul class="sidenav">
-            <li><a href="#"><i class="fa fa-check"></i><b>Tasks</b></a></li>
+            <li><router-link to="/edit/New"><i class="fa fa-check"></i><b>添加新的动作</b></router-link></li>
             <li><a href="#"><i class="fa fa-inbox"></i><b>Messages</b></a></li>
             <li><a href="#"><i class="fa fa-pencil"></i><b>New Post</b></a></li>
             <li><a href="#"><i class="fa fa-cog"></i><b>Settings</b></a></li>
