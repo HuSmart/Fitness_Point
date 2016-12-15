@@ -1,8 +1,10 @@
 <template>
   <div id="head">
-    <pageHeader fixed :title="title">     
+    <pageHeader fixed :title="title">
       <mt-button icon="back" @click="fullBack" slot="left" v-if="back">返回</mt-button>
-      <mt-button icon="more" @click="showMenu" slot="right" v-if="more"></mt-button>
+      <mt-button icon="more" @click="showMenu" slot="right" v-if="$store.state.more"></mt-button>
+      <i class="fa fa-plus" aria-hidden="true" slot="right" v-if="false"></i> 
+      <i class="fa fa-check" @click="check" aria-hidden="true" slot="right" v-if="$store.state.check"></i>
     </pageHeader>
     <mt-popup v-model="popupVisible" position="right" class="right-menu">
       <fit-menu :dlay="popupVisible"></fit-menu>
@@ -11,47 +13,47 @@
 </template>
 
 <script>
-import { Header } from 'mint-ui'
-import { Button } from 'mint-ui';
-import utils from '../lib/utils.js'
-import { Popup } from 'mint-ui';
-import Menu from './Menu.vue'
+  import { Header } from 'mint-ui'
+  import { Button } from 'mint-ui';
+  import utils from '../lib/utils.js'
+  import { Popup } from 'mint-ui';
+  import Menu from './Menu.vue'
 
-export default {
-  components:{
-    'pageHeader': Header,
-    'mt-button': Button,
-    'mt-popup': Popup,
-    'fit-menu': Menu
-  },
-  computed: {
-    title(){
-      return this.$store.state.title
+  export default {
+    components: {
+      'pageHeader': Header,
+      'mt-button': Button,
+      'mt-popup': Popup,
+      'fit-menu': Menu
     },
-    back(){
-      return this.$store.state.back
-    },
-    more(){
-      return this.$store.state.more
-    }
-  },
-  methods:{
-    fullBack(){
-      if(!utils.isEmptyObject(this.$store.state.selectedParams)){
-        this.$store.state.selectedParams = {}
+    computed: {
+      title() {
+        return this.$store.state.title
+      },
+      back() {
+        return this.$store.state.back
       }
-      window.history.go(-1)
     },
-    showMenu(){
-      this.popupVisible = true 
-    }
-  },
-  data(){
-    return {
-      popupVisible: false
+    methods: {
+      fullBack() {
+        if (!utils.isEmptyObject(this.$store.state.selectedParams)) {
+          this.$store.state.selectedParams = {}
+        }
+        window.history.go(-1)
+      },
+      showMenu() {
+        this.popupVisible = true
+      },
+      check(){
+        this.$store.dispatch('insertNewPlan')
+      }
+    },
+    data() {
+      return {
+        popupVisible: false
+      }
     }
   }
-}
 </script>
 
 <style>

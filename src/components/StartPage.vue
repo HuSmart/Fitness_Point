@@ -11,7 +11,6 @@
   </div>
 </template>
 <script>
-  import { TabContainerItem } from 'mint-ui';
   import { Cell } from 'mint-ui';
 
   export default {

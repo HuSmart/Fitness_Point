@@ -13,6 +13,10 @@ export default {
   },
   searchActionInRecorde(state){
     return state.recordeList[state.selectedParams.action] ? true : false
+  },
+  getPlanActions(state){
+    state.planList[state.selectedParams.name][state.selectedParams.muscle] = state.planList[state.selectedParams.name][state.selectedParams.muscle] || []
+    return state.planList[state.selectedParams.name][state.selectedParams.muscle] 
   }
 }
 

@@ -11,6 +11,7 @@ let state = {
   selected: '开始',
   back: false,
   more: true,
+  check: false,
   unit: 'Kg',
   show: false,
   selectedParams: {},
@@ -20,8 +21,9 @@ let state = {
   muscleList: ["胸部", "背部", "手臂", "肩部", "腿部", "腹部", "有氧", "拉伸"],
   // 记录列表
   recordeList: {},
-  // 记录每次锻炼的时间-动作
-  recordeTimeList: []
+  //锻炼计划列表
+  planList:{},
+  planAction: []
 }
 
 export default new Vuex.Store({
