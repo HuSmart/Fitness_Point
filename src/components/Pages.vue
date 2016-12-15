@@ -3,13 +3,18 @@
     <mt-tab-container v-model="active" swipeable>
       <mt-tab-container-item id="开始" >
         <transition name="start-wapper" mode="out-in">
-          <router-view></router-view>
+          <router-view name="start"></router-view>
         </transition>
       </mt-tab-container-item>
       <mt-tab-container-item id="健身计划">
-        <mt-cell v-for="n in 5" title="tab-container 2">321</mt-cell>
+        <transition name="start-wapper" mode="out-in">
+          <router-view name="plan"></router-view>
+        </transition>
       </mt-tab-container-item>
       <mt-tab-container-item id="进度">
+        <mt-cell v-for="n in 7" title="tab-container 3">456</mt-cell>
+      </mt-tab-container-item>
+      <mt-tab-container-item id="我的">
         <mt-cell v-for="n in 7" title="tab-container 3">456</mt-cell>
       </mt-tab-container-item>
     </mt-tab-container>
