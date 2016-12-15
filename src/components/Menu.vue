@@ -1,8 +1,8 @@
 <template>
     <div id="menu-wapper">
         <ul class="sidenav">
-            <li><router-link to="/edit/New"><i class="fa fa-check"></i><b>添加新的动作</b></router-link></li>
-            <li><a href="#"><i class="fa fa-inbox"></i><b>Messages</b></a></li>
+            <li><router-link to="/edit/New"><i class="fa fa-check"></i><b>新的动作</b></router-link></li>
+            <li @click="move"><router-link to="/planEdit/:new" ><i class="fa fa-inbox"></i><b>新的训练计划</b></router-link></li>
             <li><a href="#"><i class="fa fa-pencil"></i><b>New Post</b></a></li>
             <li><a href="#"><i class="fa fa-cog"></i><b>Settings</b></a></li>
             <li><a href="#"><i class="fa fa-star"></i><b>Starred</b></a></li>
@@ -22,6 +22,9 @@
         methods: {
             show(){
                 this.check = !this.check
+            },
+            move(){
+                this.$store.state.selected = "健身计划"
             }
         }
     }
