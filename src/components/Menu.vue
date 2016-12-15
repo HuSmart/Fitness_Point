@@ -1,8 +1,12 @@
 <template>
     <div id="menu-wapper">
         <ul class="sidenav">
-            <li><router-link to="/edit/New"><i class="fa fa-check"></i><b>新的动作</b></router-link></li>
-            <li @click="move"><router-link to="/planEdit/:new" ><i class="fa fa-inbox"></i><b>新的训练计划</b></router-link></li>
+            <li>
+                <router-link to="/edit/New"><i class="fa fa-check"></i><b>新的动作</b></router-link>
+            </li>
+            <li @click="move">
+                <a href="#"><i class="fa fa-inbox"></i><b>新的训练计划</b></a>
+            </li>
             <li><a href="#"><i class="fa fa-pencil"></i><b>New Post</b></a></li>
             <li><a href="#"><i class="fa fa-cog"></i><b>Settings</b></a></li>
             <li><a href="#"><i class="fa fa-star"></i><b>Starred</b></a></li>
@@ -12,30 +16,24 @@
     </div>
 </template>
 <script>
+    import { MessageBox } from 'mint-ui'
     export default {
-        props:['dlay'],
-        data(){
-            return {
-                check: false
-            }
-        },
         methods: {
-            show(){
-                this.check = !this.check
-            },
-            move(){
+            move() {
                 this.$store.state.selected = "健身计划"
-            }
+                MessageBox.prompt('请输入计划的名称')
+                    .then(({ value, action }) => {
+                        this.$store.state.title = value
+                        this.$store.state.planList[value] = {}
+                        this.$store.state.selectedParams.name = value
+                        this.$router.push("/PlanMuscleList/new")
+                    })
+                    .catch(() => console.log('conl'))
         }
+    }
     }
 </script>
 <style>
-    /*Fontawesome Iconfont*/
-    
-    @import url(http://libs.useso.com/js/font-awesome/4.0.1/css/font-awesome.min.css);
-    /*Montserrat, Open Sans*/
-    
-    /*@import url(http://fonts.useso.com/css?family=Montserrat|Open+Sans:400,300);*/
     .sidenav {
         background: rgb(50, 60, 60);
         width: 100vw;

@@ -27,5 +27,8 @@ export default {
   },
   addMuscleAction({commit}, params){
     commit(types.ADD_MUSCLES_ACTION, params)
+  },
+  insertNewPlan({commit}){
+    commit(types.INSERT_NEW_PLAN)
   }
 }

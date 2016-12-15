@@ -89,5 +89,14 @@ export default {
     delete params['muscle']
     state.actionList[muscle].push(params)
     Utils.syncRecToLocal('act', state.actionList)
+  },
+  //插入一条新的训练计划
+  [types.INSERT_NEW_PLAN](state){
+    const muscle = state.selectedParams.muscle
+    const name = state.selectedParams.name
+    if(state.planAction.length !== 0 ){
+      state.planList[name][muscle] = state.planAction
+    }
+    console.log(state.planList)
   }
 }
