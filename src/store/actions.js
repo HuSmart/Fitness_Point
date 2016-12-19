@@ -30,5 +30,8 @@ export default {
   },
   insertNewPlan({commit}){
     commit(types.INSERT_NEW_PLAN)
+  },
+  initPlanList({commit}){
+    commit(types.INIT_PLAN_LIST)
   }
 }

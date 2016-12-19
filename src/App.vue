@@ -25,6 +25,7 @@ export default {
   mounted(){
     this.$store.dispatch('initAllRecording')
     this.$store.dispatch('initAllAction')
+    this.$store.dispatch('initPlanList')
 
   },
   watch: {

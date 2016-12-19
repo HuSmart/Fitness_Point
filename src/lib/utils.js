@@ -7,7 +7,7 @@ let saveToLocal = function(data){
 
 utils.getDate = function () {
   let toDay = new Date()
-  return `${toDay.getFullYear()}-${toDay.getMonth() + 1}-${toDay.getDay()}`
+  return `${toDay.getFullYear()}-${toDay.getMonth() + 1}-${toDay.getDate()}`
 }
 
 utils.isEmptyObject = function (obj) {
@@ -41,6 +41,9 @@ utils.syncRecToLocal = function(key, data) {
     case 'act':
       localStorage.setItem('actionList', result)
       break;
+    case 'plan':
+      localStorage.setItem('planList', result)
+      break;
     default:
       break;
   }
@@ -58,6 +61,13 @@ utils.syncRecToApp = function(key){
         return JSON.parse(localStorage.getItem('actionList'))
       }else{
         return DEFINE_ACTION_LIST
+      }
+      break
+    case 'plan':
+      if(localStorage.getItem('planList')){
+        return JSON.parse(localStorage.getItem('planList'))
+      }else{
+        return {}
       }
     default:
       break;
