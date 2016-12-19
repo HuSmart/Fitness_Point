@@ -7,19 +7,20 @@
       <mt-button type="primary" size="large" @click="addCorde">添加记录</mt-button>
     </div>
     <div class="recordePart">
-      <ul v-infinite-scroll="loadMore" style="margin:0;padding:0"
-      infinite-scroll-disabled="loading" 
-      infinite-scroll-distance="10">
-        <li v-for="(item, index) in list">
-          <mt-cell 
+      <dl>
+        <template v-for="time of Object.keys(reList)" >
+          <dt>{{time}}</dt>
+          <dd v-for="(item,index) of reList[time]">
+            <mt-cell 
             :title="`#${index+1} ${ item.weight }${$store.state.unit} x ${ item.count }次数`" 
             is-link 
             @click.native="showDetail(item,index)"
             value="编辑"
           >
           </mt-cell>
-        </li>
-      </ul>
+          </dd>
+        </template>
+      </dl>
     </div>
     <!--Edit-->
     <edit-wrapper :params="params"></edit-wrapper>
@@ -76,6 +77,9 @@
         let nowDayTime = Utils.getDate()
         this.$store.dispatch('initActionRecording')
         return this.$store.state.recordeList[action][nowDayTime]
+      },
+      reList(){
+        return this.$store.state.recordeList[this.$store.state.title]
       }
     },
     methods: {
@@ -113,6 +117,10 @@
 <style>
   #recording .mint-button {
     margin-top: 1rem
+  }
+  #recording dd{
+    margin-block-start: 0px;
+    -webkit-margin-start: 0px
   }
   
   li {
