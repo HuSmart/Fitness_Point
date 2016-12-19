@@ -24,6 +24,7 @@
                 this.$store.state.title = "健身计划"
                 MessageBox.prompt('请输入计划的名称')
                     .then(({ value, action }) => {
+                        this.$store.state.back = true
                         this.$store.state.title = value
                         this.$store.state.planList[value] = {}
                         this.$store.state.selectedParams.name = value

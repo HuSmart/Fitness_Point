@@ -16,5 +16,6 @@ export const SET_ACTION_DETAIL = "SET_ACTION_DETAIL"
 export const INIT_ALL_ACTION = "INIT_ALL_ACTION"
 // 插入一条新的训练计划
 export const INSERT_NEW_PLAN = "INSERT_NEW_PLAN"
+export const INIT_PLAN_LIST = "INIT_PLAN_LIST"
 
 

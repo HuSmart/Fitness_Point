@@ -36,7 +36,8 @@
     },
     methods: {
       fullBack() {
-        if (!utils.isEmptyObject(this.$store.state.selectedParams)) {
+        const params = this.$store.state.selectedParams
+        if (!utils.isEmptyObject(params) && !params.name) {
           this.$store.state.selectedParams = {}
         }
         window.history.go(-1)
@@ -45,7 +46,9 @@
         this.popupVisible = true
       },
       check(){
-        this.$store.dispatch('insertNewPlan')
+        this.$store.dispatch('insertNewPlan').then(() => {
+          this.$router.replace('/')
+        })
       }
     },
     data() {

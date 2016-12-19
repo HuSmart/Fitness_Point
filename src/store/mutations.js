@@ -97,6 +97,9 @@ export default {
     if(state.planAction.length !== 0 ){
       state.planList[name][muscle] = state.planAction
     }
-    console.log(state.planList)
+    Utils.syncRecToLocal('plan', state.planList)
+  },
+  [types.INIT_PLAN_LIST](state){
+    state.planList = Utils.syncRecToApp('plan')
   }
 }
