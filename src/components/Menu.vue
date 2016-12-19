@@ -21,6 +21,7 @@
         methods: {
             move() {
                 this.$store.state.selected = "健身计划"
+                this.$store.state.title = "健身计划"
                 MessageBox.prompt('请输入计划的名称')
                     .then(({ value, action }) => {
                         this.$store.state.title = value
