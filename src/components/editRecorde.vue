@@ -56,7 +56,7 @@
     transform: translate3d(-50%, -50%, 0);
     background: #fff;
     width: 85vw;
-    height: 31vh;
+    height: 15rem;
     border-radius: 3px;
     font-size: 16px;
     -webkit-user-select: none;
