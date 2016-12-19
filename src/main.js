@@ -16,6 +16,7 @@ import PlanRouter from './router-components/PlanRouter.vue'
 import PlanDetail from './components/plan/PlanDetail.vue'
 import PlanEdit from './components/plan/PlanEdit.vue'
 import PlanActionSelect from './components/plan/PlanActionList.vue'
+import PlanMuscleList from './components/plan/PlanMuscleList.vue'
 Vue.use(VueRouter)
 Vue.use(MinUI)
 
@@ -75,6 +76,12 @@ const router = new VueRouter({
           components: {
             start: StartPage,
             plan: PlanActionSelect
+          }
+        },{
+          path: "PlanMuscleList/:plan",
+          components: {
+            start: StartPage,
+            plan: PlanMuscleList
           }
         }
       ]

@@ -10,6 +10,7 @@
 
 import pageHeader from './components/PageHeader'
 import tabbar from './components/Tabbar'
+import './assets/css/font-awesome.min.css'
 // import 
 export default {
   name: 'app',
