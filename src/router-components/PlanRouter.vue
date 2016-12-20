@@ -1,8 +1,8 @@
 <template>
   <div id="planHomePage">
-      <mt-cell v-for="muscle in muscles" 
-        :title="muscle"
-        :to="`action/${muscle}`"
+      <mt-cell v-for="plan in plans" 
+        :title="plan"
+        :to="`PlanDetail/${plan}`"
         is-link
 
       >
@@ -14,7 +14,7 @@
   import { Cell } from 'mint-ui';
   export default {
     computed: {
-      muscles(){
+      plans(){
         return Object.keys(this.$store.state.planList)
       }
     },

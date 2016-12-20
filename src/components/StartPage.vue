@@ -6,7 +6,7 @@
       is-link
 
     >
-    <img slot="icon" src="" width="24" height="24">
+    <i slot="icon" class="fa fa-sun-o" aria-hidden="true"></i>
     </mt-cell>
   </div>
 </template>
