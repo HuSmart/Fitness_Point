@@ -12,7 +12,8 @@
         </transition>
       </mt-tab-container-item>
       <mt-tab-container-item id="进度">
-        <mt-cell v-for="n in 7" title="tab-container 3">456</mt-cell>
+        <my-calendar></my-calendar>
+        <!--<mt-cell v-for="n in 7" title="tab-container 3">456</mt-cell>-->
       </mt-tab-container-item>
       <mt-tab-container-item id="我的">
         <mt-cell v-for="n in 7" title="tab-container 3">456</mt-cell>
@@ -25,19 +26,21 @@
 import { TabContainer, TabContainerItem } from 'mint-ui';
 import { Cell } from 'mint-ui';
 
+import Calendar from '../components/progress/Calendar'
+
 export default {
   props: ['active'],
   components:{
     't-tab-container': TabContainer,
     'mt-tab-container-item': TabContainerItem,
     'mt-cell': Cell,
+    'my-calendar': Calendar
   }
 }
 </script>
 
 <style>
   #pages {
-    /*padding: 2rem 0;*/
   }
 
   .start-wapper-enter-active,
