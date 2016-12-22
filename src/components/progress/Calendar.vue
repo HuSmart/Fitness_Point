@@ -6,7 +6,7 @@
         <div class="cov-date-previous" @click="nextMonth('pre')"> < </div>
         <div class="cov-date-next" @click="nextMonth('next')"> > </div>
         <div class="cov-date-caption">
-          <span @click=""><small>{{checked.year}}</small></span>
+          <span @click="">{{checked.year}}年</span>
           <span @click="">{{displayInfo.month}}</span>
         </div>
       </div>
@@ -18,9 +18,10 @@
         </div>
         <br>
         <div class="days" v-for="day, index of dayList"
-          :class="{'isMonth':day.inMonth}"
+          :class="{'isMonth':day.inMonth,'nowDay':day.checked,}"
         >
-          {{day.value}}
+          <span @click="showRecarde(day)">{{day.value}}</span>
+          <i class="fa fa-check-circle-o" aria-hidden="true" v-if="day.isRecorde"></i>
         </div>
       </div>
     </div>
@@ -28,7 +29,7 @@
 </template>
 <script>
   import moment from 'moment'
-
+  import utils from '../../lib/utils.js'
   export default {
     props: {
       option: {
@@ -37,8 +38,8 @@
           return {
             type: 'day',
             SundayFirst: false,
-            week: ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'],
-            month: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+            week: ['一', '二', '三', '四', '五', '六', '日'],
+            month: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
             format: 'YYYY-MM-DD',
             color: {
               checked: '#F50057',
@@ -93,7 +94,7 @@
         hours: hours(),
         mins: mins(),
         checked: {
-          oldtime: '',
+          oldtime: moment(),
           currentMoment: null,
           year: '',
           month: '',
@@ -123,11 +124,16 @@
       })
     },
     methods: {
-      nextMonth(...acb) {
-        console.log(acb)
+      nextMonth(...pre_or_next) {
+        if(pre_or_next[0] === 'pre'){
+          this.checked.currentMoment = moment(this.checked.currentMoment).subtract(1,'months')
+        }else {
+          this.checked.currentMoment = moment(this.checked.currentMoment).add(1,'months')
+        }
+        this.showDay('change')
       },
-      showDay() {
-        this.checked.currentMoment = moment()
+      showDay(...flag) {
+        this.checked.currentMoment = flag[0] === 'change' ? this.checked.currentMoment : moment()
         this.checked.year = moment(this.checked.currentMoment).format('YYYY')
         this.checked.month = moment(this.checked.currentMoment).format('MM')
         this.checked.day = moment(this.checked.currentMoment).format('DD')
@@ -145,7 +151,7 @@
         previousMouth.subtract(1, 'months')
         // 判断当月有多少天
         let monthDays = moment(currentMoment).daysInMonth()
-        let oldtime = this.checked.oldtime || this.checked.currentMoment
+        let oldtime = this.checked.oldtime 
         // 处理当月的日期
         for (let i = 1; i <= monthDays; i++) {
           days.push({
@@ -153,11 +159,14 @@
             inMonth: true,
             unavailable: false,
             checked: false,
-            moment: moment(currentMoment).date(i)
+            moment: moment(currentMoment).date(i),
+            isRecorde: false
           })
           if (i === Math.ceil(moment(currentMoment).format('D')) && moment(oldtime, this.option.format).year() === moment(currentMoment).year() && moment(oldtime, this.option.format).month() === moment(currentMoment).month()) {
             days[i-1].checked = true
           }
+          // 给有训练记录的日期打上标识
+          days[i-1].isRecorde = this.hasRecording(moment(currentMoment).date(i).format('YYYY-MM-DD'))
         }
         // 处理上月的
         for (let i = 0; i < firstDay-1; i++ ){
@@ -184,6 +193,18 @@
           days.push(passiveDay)
         }
         this.dayList = days
+      },
+      hasRecording(day) {
+        const reList = this.$store.state.recordeList
+        for (const action in reList){
+          if (reList[action][day]){
+            return true
+          }
+        }
+        return false
+      },
+      showRecarde(day){
+        
       }
     }
   }
@@ -233,10 +254,21 @@
   .days{
     float: left;
     margin-left: 2rem;
+    /*margin-bottom: 1rem;*/
     width: 20px;
-    text-align: center
+    height: 3rem;
+    text-align: center;
+    /*box-sizing: border-box;*/
   }
   .isMonth{
     color: cadetblue
+  }
+  .nowDay > span{
+    background: orangered;
+    border-radius: 50%;
+    color: white;
+  }
+  .days:not([class ~= "isMonth"]){
+    color: #ccc;
   }
 </style>
