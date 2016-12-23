@@ -23,7 +23,9 @@ let state = {
   recordeList: {},
   //锻炼计划列表
   planList:{},
-  planAction: []
+  planAction: [],
+  // 进度下方显示的动作列表
+  progressList: {}
 }
 
 export default new Vuex.Store({

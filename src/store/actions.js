@@ -33,5 +33,8 @@ export default {
   },
   initPlanList({commit}){
     commit(types.INIT_PLAN_LIST)
+  },
+  getOneDayRecorde({commit}, day){
+    commit(types.GET_ONEDAY_RECORDE, day)
   }
 }

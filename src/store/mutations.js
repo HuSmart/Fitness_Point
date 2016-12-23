@@ -101,5 +101,15 @@ export default {
   },
   [types.INIT_PLAN_LIST](state){
     state.planList = Utils.syncRecToApp('plan')
+  },
+  [types.GET_ONEDAY_RECORDE](state, day){
+    const list = state.recordeList
+    let detail = {}
+    for (const key in list) {
+      if(list[key][day]){
+        detail[key] = list[key][day]
+      }
+    }
+    state.progressList = detail
   }
 }
