@@ -204,7 +204,7 @@
         return false
       },
       showRecarde(day){
-        
+        this.$store.dispatch('getOneDayRecorde', moment(day.moment).format('YYYY-MM-DD'))
       }
     }
   }
@@ -215,9 +215,12 @@
   }
   .cov-date-body {
     width: 95vw;
-    height: 80vh;
+    height: 45vh;
     margin: 0;
-    padding: 0; 
+    padding: 0;
+    position: fixed;  
+    z-index: 1;
+      
   }
 
   .cov-date-previous{
