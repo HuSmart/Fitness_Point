@@ -79,6 +79,7 @@
         return this.$store.state.recordeList[action][nowDayTime]
       },
       reList(){
+        this.$store.state.recordeList[this.$store.state.title] = this.$store.state.recordeList[this.$store.state.title] || {}
         return this.$store.state.recordeList[this.$store.state.title]
       }
     },
