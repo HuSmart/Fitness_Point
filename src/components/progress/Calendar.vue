@@ -110,17 +110,20 @@
           month: this.option.month,
           year: []
         },
-        dayList: []
+        // dayList: [],
       }
     },
     computed: {
       time() {
         return new Date()
+      },
+      dayList(){
+        return this.showDay()
       }
     },
     mounted() {
       this.$nextTick(function () {
-        this.showDay()
+        // this.showDay()
       })
     },
     methods: {
@@ -192,7 +195,8 @@
           }
           days.push(passiveDay)
         }
-        this.dayList = days
+        // this.dayList = days
+        return days
       },
       hasRecording(day) {
         const reList = this.$store.state.recordeList
