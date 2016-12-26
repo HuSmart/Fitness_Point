@@ -16,7 +16,8 @@
         <!--<mt-cell v-for="n in 7" title="tab-container 3">456</mt-cell>-->
       </mt-tab-container-item>
       <mt-tab-container-item id="我的">
-        <mt-cell v-for="n in 7" title="tab-container 3">456</mt-cell>
+        <!--<mt-cell v-for="n in 7" title="tab-container 3">456</mt-cell>-->
+        <my-user-center></my-user-center>
       </mt-tab-container-item>
     </mt-tab-container>
   </div>
@@ -27,6 +28,7 @@ import { TabContainer, TabContainerItem } from 'mint-ui';
 import { Cell } from 'mint-ui';
 
 import Schedule from '../components/progress/Schedule'
+import UserCenter from '../components/User/UserCenter'
 
 export default {
   props: ['active'],
@@ -34,7 +36,8 @@ export default {
     't-tab-container': TabContainer,
     'mt-tab-container-item': TabContainerItem,
     'mt-cell': Cell,
-    'my-schedule': Schedule
+    'my-schedule': Schedule,
+    'my-user-center': UserCenter
   }
 }
 </script>
