@@ -1,4 +1,12 @@
-# fitness
+# Fitness
+
+------
+一个用Vue2.0、mint-ui实现的简单WebApp. 尚不完善，仅作Demo
+![](https://img.shields.io/travis/USER/REPO.svg)![](https://img.shields.io/badge/Vue-v2.1.0-green.svg)![](https://img.shields.io/badge/Mint--UI-v2.0.6-green.svg)
+
+## 效果预览
+[Demo](http://okkot7p97.bkt.clouddn.com/index.html)
+
 
 > A Vue.js project
 
